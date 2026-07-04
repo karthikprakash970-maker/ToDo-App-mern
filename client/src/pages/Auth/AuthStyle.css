@@ -1,0 +1,39 @@
+.form-container{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.form{
+    border: 2px solid gray;
+    border-radius: 5px;
+    padding: 20px;
+    width: 400px;
+    box-shadow: 0px 3px 1px gray;
+    
+}
+.fa-circle-user{
+    margin-bottom: 30px;
+    font-size: 150px;
+    display: flex;
+    justify-content: center;
+    color: black;
+}
+.mb-3{
+    display: flex;
+    justify-content: center;
+}
+.login-btn{
+    background-color: black;
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    color: aliceblue;
+}
+
+.login-btn:hover{
+    background-color: rgb(51, 49, 48);
+    color:white ;
+    transform: scale(1.01);
+}
