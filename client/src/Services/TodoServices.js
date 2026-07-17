@@ -1,31 +1,34 @@
-import axios from 'axios'
+import axios from "axios";
 
-//get user token
-const user = JSON.parse(localStorage.getItem('todoapp'))
+const API = axios.create({
+  baseURL: process.env.REACT_APP_BASEURL,
+});
 
-//default auth header
-if (user?.token) {
-  axios.defaults.headers.common["Authorization"] = `bearer ${user.token}`;
-}
-//Create todo
-const createTodo = (data) =>{
-    return axios.post('/todo/create',data)
+API.interceptors.request.use((config) => {
+  const user = JSON.parse(localStorage.getItem("todoapp"));
+
+  if (user?.token) {
+    config.headers.Authorization = `Bearer ${user.token}`;
+  }
+
+  return config;
+});
+
+// Create Todo
+const createTodo = (data) => API.post("/todo/create", data);
+
+// Get All Todos
+const getAllTodo = (id, data) => API.post(`/todo/getAll/${id}`, data);
+
+// Update Todo
+const updateTodo = (id, data) => API.patch(`/todo/update/${id}`, data);
+
+// Delete Todo
+const deleteTodo = (id) => API.delete(`/todo/delete/${id}`);
+
+export default {
+  createTodo,
+  getAllTodo,
+  updateTodo,
+  deleteTodo,
 };
-
-//GET ALL todo
-const getAllTodo = (id, data) => {
-    return axios.post(`/todo/getAll/${id}`, data);
-};
-
-//UPDATE TODO
-const updateTodo = (id,data)=>{
-    return axios.patch("/todo/update/" + id, data)
-}
-
-//DELETE TODO
-const deleteTodo = (id) =>{
-    return axios.delete("/todo/delete/" +id)
-}
-
-const TodoServices = { createTodo, getAllTodo, updateTodo, deleteTodo}
-export default TodoServices
