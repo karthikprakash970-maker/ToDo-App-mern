@@ -26,9 +26,11 @@ const updateTodo = (id, data) => API.patch(`/todo/update/${id}`, data);
 // Delete Todo
 const deleteTodo = (id) => API.delete(`/todo/delete/${id}`);
 
-export default {
+const TodoServices = {
   createTodo,
   getAllTodo,
   updateTodo,
   deleteTodo,
 };
+
+export default TodoServices;

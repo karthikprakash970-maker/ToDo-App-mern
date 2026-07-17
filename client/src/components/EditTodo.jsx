@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import toast from 'react-hot-toast';
 import TodoServices from '../Services/TodoServices';
 
@@ -19,12 +19,7 @@ const EditTodo = ({ task, setShowModal, getUserTask }) => {
     //update
     const handleSubmit = async() =>{
         try{
-            const userData = JSON.parse(localStorage.getItem('todoapp'))
-            const createdBy = userData && userData.user.id;
             const data = { title, description, isCompleted };
-            // if(!title || !description){
-            //     return toast.error('please provide title or description')
-            // }
             await TodoServices.updateTodo(id, data);
             setShowModal(false)
             toast.success("Task Updated Successfully");
